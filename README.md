@@ -11,4 +11,3 @@
 * `make`
 * `./a.out`
 
-# File-Explorer
