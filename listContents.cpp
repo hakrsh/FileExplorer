@@ -86,7 +86,7 @@ string getTime(struct stat info) {
   string ltime;
   if(dt){
     char *buf = new char[20];
-    vector<const char*> mon{"Jan","Feb","Mar","Apr","May","Jun","Jul","Sep","Oct","Nov","Dec"};
+    vector<const char*> mon{"Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"};
     sprintf(buf, "%s %02d %02d:%02d",mon[dt->tm_mon],dt->tm_mday, dt->tm_hour, dt->tm_min);
     return string(buf);
   }
@@ -114,7 +114,9 @@ void listDir(string dirName) {
     string usr = getUser(info.st_uid);
     string grp = getGroup(info.st_gid);
     string sizefield = getSize(info.st_size);
-    temp.push_back({getPerm(info.st_mode),usr,grp,sizefield,getTime(info),dirEntry->d_name});
+    string perm = getPerm(info.st_mode);
+    string time = getTime(info);
+    temp.push_back({perm,usr,grp,sizefield,time,dirEntry->d_name});
     userlen = max(userlen,int(usr.length()));
     grplen = max(grplen,int(grp.length()));
     sizelen = max(sizelen,int(sizefield.length()));

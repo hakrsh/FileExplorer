@@ -113,7 +113,7 @@ void init() {
   E.cy = 42;
   if (getWindowSize(&E.screenrows, &E.screencols) == -1)
     err("getWindowSize");
-  char *dirName = new char[1000];
+  char dirName[1000];
   getcwd(dirName, 1000);
   E.root = dirName;
   E.pwd = dirName;
